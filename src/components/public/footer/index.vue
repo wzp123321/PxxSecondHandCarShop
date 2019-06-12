@@ -3,35 +3,50 @@
     <b-container>
       <b-row>
         <b-col xl="2">
-          <img src="../../../../static/imgs/logo.png" style="width:180px;height:100px">
+          <img src="../../../../static/imgs/logo.png" class="footer-logo">
         </b-col>
         <b-col xl="3" class="footer-second">
-          <div>咨询电话：800-820-8888</div>
-          <div>服务监督热线：800-820-8888</div>
-          <div>互联网违法或不良信息举报联系方式：</div>
-          <div>邮箱： jubao@guazi.com</div>
+          <div v-for="(d1,index) in data1" :key="index">{{d1.title}}</div>
         </b-col>
-        <b-col xl="2">
+        <b-col xl="2" v-for="(d3,index) in data3" :key="index">
           <img src="../../../../static/imgs/app.png" class="footer-img">
-          <p class="footer-p">关注微信</p>
-        </b-col>
-        <b-col xl="2">
-          <img src="../../../../static/imgs/app.png" class="footer-img">
-          <p class="footer-p">下载APP</p>
+          <p class="footer-p">{{d3.title}}</p>
         </b-col>
         <b-col xl="3" class="footer-second">
-          <div>地址：合肥</div>
-          <div>邮编：232001</div>
-          <div>联系人：麻花藤</div>
-          <div>电话：010-89191670</div>
-          <div>邮箱：wanzhipeng@163.com</div>
+          <div v-for="(d2,index) in data2" :key="index">{{d2.title}}</div>
         </b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data1: [
+        { title: "咨询电话：800-820-8888" },
+        { title: "服务监督热线：800-820-8888" },
+        { title: "互联网违法或不良信息举报联系方式：" },
+        { title: "邮箱： jubao@guazi.com" }
+      ],
+      data2: [
+        { title: "地址：合肥" },
+        { title: "邮编：232001" },
+        { title: "联系人：麻花藤" },
+        { title: "电话：010-89191670" },
+        { title: "邮箱：wanzhipeng@163.com" }
+      ],
+      data3: [
+        {
+          title: "关注微信"
+        },
+        {
+          title: "下载APP"
+        }
+      ]
+    };
+  }
+};
 </script>
 <style lang="less" scoped>
 .footer {
@@ -52,6 +67,10 @@ export default {};
   }
   .footer-p {
     color: #b8b8b8;
+  }
+  .footer-logo {
+    width: 180px;
+    height: 100px;
   }
 }
 </style>

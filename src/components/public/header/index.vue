@@ -8,26 +8,14 @@
               <img src="../../../../static/imgs/logo.png" class="header-logo">
             </router-link>
           </b-col>
-          <b-col xl="1" class="common-header-slice" offset-xl="4">
-            <router-link
-              to="/pxx/app/index"
-              :class="{indexActive : this.$route.path === '/pxx/app/index'}"
-            >首页</router-link>
-          </b-col>
-          <b-col xl="1" class="common-header-slice">
-            <router-link
-              to="/pxx/app/buy"
-              :class="{indexActive : this.$route.path === '/pxx/app/buy'}"
-            >我要买车</router-link>
-          </b-col>
-          <b-col xl="1" class="common-header-slice">
-            <router-link
-              to="/pxx/app/sell"
-              :class="{indexActive : this.$route.path === '/pxx/app/sell'}"
-            >我要卖车</router-link>
-          </b-col>
-          <b-col xl="1" class="common-header-slice">
-            <router-link to="/pxx/reg" :class="{indexActive : this.$route.path === '/pxx/reg'}">注册</router-link>
+          <b-col
+            v-for="(d1,index) in headerdata1"
+            :key="index"
+            xl="1"
+            class="common-header-slice"
+            :offset-xl="index===0? 5 : 0"
+          >
+            <router-link :to="d1.path" :class="{indexActive : $route.path === d1.path}">{{d1.title}}</router-link>
           </b-col>
           <b-col xl="1" class="common-header-slice">
             <router-link
@@ -82,26 +70,14 @@
             <img src="../../../../static/imgs/logo.png" class="header-logo">
           </router-link>
         </b-col>
-        <b-col xl="1" class="common-header-slice2" offset-xl="4">
-          <router-link
-            to="/pxx/app/index"
-            :class="{indexActive : this.$route.path === '/pxx/app/index'}"
-          >首页</router-link>
-        </b-col>
-        <b-col xl="1" class="common-header-slice2">
-          <router-link
-            to="/pxx/app/buy"
-            :class="{indexActive : this.$route.path === '/pxx/app/buy'}"
-          >我要买车</router-link>
-        </b-col>
-        <b-col xl="1" class="common-header-slice2">
-          <router-link
-            to="/pxx/app/sell"
-            :class="{indexActive : this.$route.path === '/pxx/app/sell'}"
-          >我要卖车</router-link>
-        </b-col>
-        <b-col xl="1" class="common-header-slice2">
-          <router-link to="/pxx/reg" :class="{indexActive : this.$route.path === '/pxx/reg'}">注册</router-link>
+        <b-col
+          v-for="(d1,index) in headerdata1"
+          :key="index"
+          xl="1"
+          class="common-header-slice2"
+          :offset-xl="index===0? 5 : 0"
+        >
+          <router-link :to="d1.path" :class="{indexActive : $route.path === d1.path}">{{d1.title}}</router-link>
         </b-col>
         <b-col xl="1" class="common-header-slice2">
           <router-link
@@ -144,13 +120,31 @@ export default {
       loginflag: true,
       useravatar: "",
       username: "",
-      persondivflag: false
+      persondivflag: false,
+      headerdata1: [
+        {
+          path: "/pxx/app/index",
+          title: "首页"
+        },
+        {
+          path: "/pxx/app/buy",
+          title: "我要买车"
+        },
+        {
+          path: "/pxx/app/sell",
+          title: "我要卖车"
+        },
+        {
+          path: "/pxx/reg",
+          title: "注册"
+        }
+      ]
     };
   },
   methods: {
     // 显示估价对话框
     showevaluateModal() {
-      if (window.sessionStorage.getItem("loginflag")!=='true') {
+      if (window.sessionStorage.getItem("loginflag") !== "true") {
         this.$message.error("您尚未登录，请前往登录！");
         this.$router.push("/pxx/signin");
       } else {
@@ -169,16 +163,16 @@ export default {
       window.localStorage.removeItem("password");
       window.localStorage.removeItem("userId");
       window.localStorage.removeItem("useravatar");
-      window.sessionStorage.setItem("loginflag",'false');
+      window.sessionStorage.setItem("loginflag", "false");
       location.href = "/";
     }
   },
   mounted() {
-    if (window.sessionStorage.getItem("loginflag")==='true') {
+    if (window.sessionStorage.getItem("loginflag") === "true") {
       this.loginflag = false;
       this.useravatar = Decrypt(window.localStorage.getItem("useravatar"));
       this.username = Decrypt(window.localStorage.getItem("username"));
-    }else{
+    } else {
       this.loginflag = true;
     }
   }
@@ -338,7 +332,8 @@ export default {
     height: 600px;
   }
   .common-header-slice,
-  .common-header-slice2,.useravatar-p{
+  .common-header-slice2,
+  .useravatar-p {
     font-size: 14px !important;
   }
   .header-banner-span,

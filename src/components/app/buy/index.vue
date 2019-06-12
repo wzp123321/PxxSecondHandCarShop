@@ -1,7 +1,7 @@
 <template>
   <a-spin tip="加载中..." :spinning="carloading">
     <!-- 选项栏 -->
-    <b-container>
+    <b-container style="margin-top:50px">
       <div class="choose-container">
         <span class="choose-type-span">品牌</span>
         <span class="choose-code-span" @click="getAllCarData">不限</span>
