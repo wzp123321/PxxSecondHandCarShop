@@ -433,7 +433,6 @@ export default {
             this.$message.success("上传成功");
             previewurls.push(response.data.data.url);
             this.previewurls = previewurls;
-            console.log(previewurls);
           } else {
             this.$message.error("上传失败");
           }
